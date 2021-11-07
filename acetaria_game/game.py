@@ -1,4 +1,5 @@
 from .deck import Deck
+from .market import Market
 from .constants import GameState, TurnState, Veggie
 
 
@@ -13,17 +14,28 @@ class Game():
         self.turn_state = TurnState.DRAW
 
     def test(self):
-        hand = {
-            Veggie.CARROT: 0,
-            Veggie.PEPPER: 6,
-            Veggie.TOMATO: 2,
-            Veggie.LETTUCE: 3,
-            Veggie.ONION: 4,
-            Veggie.CABBAGE: 0
-        }
-        d = Deck()
-        d.load()
+        deck = Deck()
+        deck.setup(3)
+        deck.print_cards()
 
-        print(hand)
-        for c in d.cards:
-            print(c.description, "->", c.get_score(hand))
+        market = Market(deck)
+        market.fill_stalls()
+        market.show()
+        deck.print_cards()
+
+        # for i in range(18):
+        #     print("-----")
+        #     print("->", deck.draw_card().id)
+        #     deck.print_cards()
+
+        # hand = {
+        #     Veggie.CARROT: 0,
+        #     Veggie.PEPPER: 6,
+        #     Veggie.TOMATO: 2,
+        #     Veggie.LETTUCE: 3,
+        #     Veggie.ONION: 4,
+        #     Veggie.CABBAGE: 0
+        # }
+        # print(hand)
+        # for card in deck.cards:
+        #     print(card.description, "->", card.get_score(hand))
