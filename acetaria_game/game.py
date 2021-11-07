@@ -1,3 +1,4 @@
+import uuid
 from .deck import Deck
 from .market import Market
 from .constants import GameState, TurnState, Veggie
@@ -5,23 +6,33 @@ from .constants import GameState, TurnState, Veggie
 
 class Game():
     def __init__(self):
-        self.host_connected = False
-        self.cards = Deck()
+        self.id = uuid.uuid4()
+        self.max_number_of_players = 6
         self.players = []
         self.round = 0
-        self.quitting = False
+        self.deck = Deck()
         self.game_state = GameState.WAITING_FOR_PLAYERS
         self.turn_state = TurnState.DRAW
 
-    def test(self):
-        deck = Deck()
-        deck.setup(3)
-        deck.print_cards()
+        self.host_connected = False
+        self.quitting = False
 
-        market = Market(deck)
-        market.fill_stalls()
-        market.show()
-        deck.print_cards()
+    def add_player(self, player):
+        if len(self.players) < self.max_number_of_players:
+            self.players.append(player)
+        else:
+            raise Exception('Maximum number of players already reached.')
+
+    def test(self):
+        # TODO: Move testing to seperate tests suite
+        # deck = Deck()
+        self.deck.setup(3)
+        self.deck.print_cards()
+
+        self.market = Market(self.deck)
+        self.market.fill_stalls()
+        self.market.show()
+        self.deck.print_cards()
 
         # for i in range(18):
         #     print("-----")

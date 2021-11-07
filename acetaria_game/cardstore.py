@@ -75,4 +75,3 @@ pepper_cards = [
     Card(217, Veggie.PEPPER, lambda v: 0, "meeste CABBAGE = 10"),
     Card(218, Veggie.PEPPER, lambda v: 0, "minste CABBAGE = 7"),
 ]
-

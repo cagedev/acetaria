@@ -16,7 +16,7 @@ class Deck():
         self.cards.extend(carrot_cards)
         self.cards.extend(pepper_cards)
 
-    def setup(self, number_of_players):
+    def setup(self, number_of_players, do_shuffle=True):
         # 2-6 players
         # cards: number_of_players * 3 of each veg
         self.number_of_players = number_of_players
@@ -24,7 +24,8 @@ class Deck():
         # 1. Start with full deck
         self.load()
         # 2. Shuffle
-     #    shuffle(self.cards)
+        if (shuffle):
+             shuffle(self.cards)
         # 3. Iterate over cards, counting veggie_type
         for veggie_type in Veggie:
             self.limit_number_of_vegetables(
